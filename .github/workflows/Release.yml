@@ -60,7 +60,7 @@ jobs:
           echo "  targets: [" >> Package.swift
           echo "    .binaryTarget(" >> Package.swift
           echo "      name: \"XrayKit\"," >> Package.swift
-          echo "      url: \"https://github.com/daemonomead/XrayKit/releases/download/${{ github.event.inputs.version }}/XrayKit.xcframework.zip\"," >> Package.swift
+          echo "      url: \"https://github.com/daemooon/XrayKit/releases/download/${{ github.event.inputs.version }}/XrayKit.xcframework.zip\"," >> Package.swift
           echo "      checksum: \"${{ env.FILE_CHECKSUM }}\"" >> Package.swift
           echo "    )" >> Package.swift
           echo "  ]" >> Package.swift
