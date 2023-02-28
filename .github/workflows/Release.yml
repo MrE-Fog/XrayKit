@@ -19,7 +19,6 @@ jobs:
         with:
           repository: ${{secrets.RESPOSITORY}}
           token: ${{secrets.PAT}}
-          ref: 'ios'
           path: 'xray'
           
       - name: Setup Go
