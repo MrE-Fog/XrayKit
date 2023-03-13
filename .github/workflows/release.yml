@@ -35,35 +35,15 @@ jobs:
         run: |
           cd xray
           make
-          zip -ry XrayKit.xcframework.zip ./XrayKit.xcframework
+          zip -ry XrayKit.xcframework.zip ./build/XrayKit.xcframework
           
-      - name: Detect checksum
+      - name: Render Template
         run: |
           export TEMP=`shasum -a 256 xray/XrayKit.xcframework.zip`
           export CHECKSUM=${TEMP:0:64}
-          echo "FILE_CHECKSUM=${CHECKSUM}" >> $GITHUB_ENV
-          unset CHECKSUM
-          unset TEMP
-          
-      - name: Update package file
-        run: |
-          echo "// swift-tools-version: 5.7" > Package.swift
-          echo "" >> Package.swift
-          echo "import PackageDescription" >> Package.swift
-          echo "" >> Package.swift
-          echo "let package = Package(" >> Package.swift
-          echo "  name: \"XrayKit\"," >> Package.swift
-          echo "  products: [" >> Package.swift
-          echo "    .library(name: \"XrayKit\", targets: [\"XrayKit\"])" >> Package.swift
-          echo "  ]," >> Package.swift
-          echo "  targets: [" >> Package.swift
-          echo "    .binaryTarget(" >> Package.swift
-          echo "      name: \"XrayKit\"," >> Package.swift
-          echo "      url: \"https://github.com/daemooon/XrayKit/releases/download/${{ github.event.inputs.version }}/XrayKit.xcframework.zip\"," >> Package.swift
-          echo "      checksum: \"${{ env.FILE_CHECKSUM }}\"" >> Package.swift
-          echo "    )" >> Package.swift
-          echo "  ]" >> Package.swift
-          echo ")" >> Package.swift
+          cd Templates
+          sed -i "_bak" "s/VERSION/${{ github.event.inputs.version }}/g" Package.template
+          sed -i "_bak" "s/CHECKSUM/${CHECKSUM}/g" Package.template
           
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
