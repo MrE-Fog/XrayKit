@@ -45,6 +45,11 @@ jobs:
           sed -i "_bak" "s/VERSION/${{ github.event.inputs.version }}/g" Package.template
           sed -i "_bak" "s/CHECKSUM/${CHECKSUM}/g" Package.template
           
+      - name: Update Package.swift
+        run: |
+          rm -f Package.swift
+          cp ./Templates/Package.template Package.swift
+          
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: XrayKit Release ${{ github.event.inputs.version }}!!!
