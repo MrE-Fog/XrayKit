@@ -35,7 +35,7 @@ jobs:
         run: |
           cd xray
           make
-          zip -ry XrayKit.xcframework.zip ./build/XrayKit.xcframework
+          zip -ry XrayKit.xcframework.zip ./XrayKit.xcframework
           
       - name: Render Template
         run: |
