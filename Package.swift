@@ -10,8 +10,8 @@ let package = Package(
   targets: [
     .binaryTarget(
       name: "XrayKit",
-      url: "https://github.com/arror/XrayKit/releases/download/0.1.113/XrayKit.xcframework.zip",
-      checksum: "2aeeb630d19e5a103aa6aee7fd6b2ec680f8772d4429fcf58e50813e556abf59"
+      url: "https://github.com/arror/XrayKit/releases/download/0.1.114/XrayKit.xcframework.zip",
+      checksum: "01c27373b456404f5938bef6536ad95cb8f152638782972069fd6c88b861ef63"
     )
   ]
 )
